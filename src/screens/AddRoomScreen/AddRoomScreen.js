@@ -8,17 +8,28 @@ import { firebase } from '../../firebase/config';
 
 const AddRoomScreen = ({navigation}) => {
     const [roomName, setRoomName] = useState("");
+
     const handleButtonPress = () => {
         if(roomName.length > 0 ){
             firebase
             .firestore()
             .collection("THREADS")
             .add({
-                name: roomName
+                name: roomName,
+                latestMessage: {
+                    text: `You have joined the chat ${name}`,
+                    createdAt: new Date().getTime()
+                }
             })
-            .then(() =>{ 
+            .then(docRef =>{  //aggiungo un messaggio di sistema nel momento in cui viene creata la chat room
+                docRef.collection('MESSAGES')
+                .add({
+                    text: `You have joined the chat ${name}`,
+                    createdAt: new Date().getTime(),
+                    system: true
+                })
                 navigation.navigate('HomeScreen');
-                console.log('chat added', roomName)
+                console.log('add room screen- schat added', roomName)
 
             })
             .catch(error => console.log(error))
