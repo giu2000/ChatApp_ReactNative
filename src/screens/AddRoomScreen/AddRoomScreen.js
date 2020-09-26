@@ -4,10 +4,12 @@ import { View, Text, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper'
 import { FormButton, FormInput } from '../../components';
 import { firebase } from '../../firebase/config';
+import { useStatusBar } from '../../utils';
 
 
 const AddRoomScreen = ({navigation}) => {
     const [roomName, setRoomName] = useState("");
+    useStatusBar('dark-content');
     const handleButtonPress = () => {
         if(roomName.length > 0 ){
             firebase

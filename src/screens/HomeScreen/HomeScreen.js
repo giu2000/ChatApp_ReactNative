@@ -4,7 +4,7 @@ import { firebase } from '../../firebase/config';
 import { View, StyleSheet, Text, FlatList } from 'react-native';
 import { Title, List } from 'react-native-paper';
 import { FormButton } from '../../components';
-
+import { useStatusBar } from '../../utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AuthenticationContext } from '../../navigation/AuthenticationProvider/AuthenticationProvider';
 
@@ -14,6 +14,8 @@ const HomeScreen = ({navigation}) => {
     const { logout } = useContext(AuthenticationContext);
     const [ threads, setThreads ] = useState([]);
     const [ loading, setLoading ] = useState('true');
+
+    useStatusBar('light-content');
 
     useEffect(() => {
         const unsubscribe = firebase

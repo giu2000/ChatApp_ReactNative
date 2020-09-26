@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native'
 import { Loading } from '../../components';
 import { AuthenticationContext } from '../../navigation/AuthenticationProvider/AuthenticationProvider';
 import { firebase } from '../../firebase/config';
-
+import { useStatusBar } from '../../utils';
 
 
 const RoomScreen = ({route}) => {
@@ -36,6 +36,9 @@ const RoomScreen = ({route}) => {
         }
       
     ])
+
+    useStatusBar('light-content');
+
     useEffect(() => {
         console.log('i am in room screen', thread)
         console.log('i am in room screen', currentUser)
