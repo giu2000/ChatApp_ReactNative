@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext }from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen, RoomScreen } from '../../screens';
 import { IconButton } from 'react-native-paper';
+import { AuthenticationContext } from '../AuthenticationProvider/AuthenticationProvider';
 
 const {Navigator: ChatAppStackNavigator, Screen: ChatAppStackScreen } = createStackNavigator();
 
 const ChatAppStack = () => {
+    const {logout} = useContext(AuthenticationContext)
     return(
         <ChatAppStackNavigator
             screnOptions={
@@ -30,6 +32,14 @@ const ChatAppStack = () => {
                             size={28}
                             color='#ee467a'
                             onPress={() => navigation.navigate('AddRoomScreen')}
+                        />
+                    ),
+                    headerLeft: () => (
+                        <IconButton 
+                            icon='logout-variant'
+                            size={28}
+                            color='#ee467a'
+                            onPress={() => logout()}
                         />
                     )
                 })
