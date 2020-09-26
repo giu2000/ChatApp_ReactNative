@@ -30,6 +30,10 @@ const HomeScreen = ({navigation}) => {
                     return {
                          _id: documentSnaphot.id,
                          name: documentSnaphot.name,
+                         //latestMessage: documentSnaphot.latestMessage,
+                         latestMessage:{
+                             text:''
+                         },
                          ...documentSnaphot.data()
                      }
                  })
@@ -60,7 +64,7 @@ const HomeScreen = ({navigation}) => {
                                 style={styles.listItem}
                                 title={item.name}
                                 titleStyle={styles.titleItem}
-                                description={'doc descripton'}
+                                description={item.latestMessage.text}
                                 descriptionNumberOfLines={1}
                             />
                          </TouchableOpacity>
