@@ -7,9 +7,10 @@ const FormButton = ({title, mode, ...rest}) => {
     return(
         <Button 
             mode={mode}
-            { ...rest}
+            
             style={styles.button}
             contentStyle={{width: width /2, height: height / 15}}
+            {...rest}
         >
             {title}
         </Button>
@@ -19,7 +20,7 @@ const FormButton = ({title, mode, ...rest}) => {
 
 const styles=StyleSheet.create({
     button: {
-        marginTop:10
+        marginTop:10,
     }
 })
 

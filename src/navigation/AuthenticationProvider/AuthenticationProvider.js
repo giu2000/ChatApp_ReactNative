@@ -8,6 +8,7 @@ export const AuthenticationContext = createContext({}) //creo il valore della co
 
 export const AuthenticationProvider = ({children}) => {
     const [ user, setUser ] = useState(null);
+    const [errorFromFirebase, setErrorFromFirebase ] = useState({})
 
     return(
         <AuthenticationContext.Provider
@@ -15,12 +16,17 @@ export const AuthenticationProvider = ({children}) => {
                 {
                     user,
                     setUser,
+                    errorFromFirebase,
                     login: async (email, password) => {
                         try{
                             await firebase.auth().signInWithEmailAndPassword(email, password)
+                            console.log('authentication provider-email', email)
+                            console.log('authentication provider-password', password)
                             
                         }catch(error){
-                            console.log(error)
+                            console.log('authentication provider-errorFromFirebase', errorFromFirebase);
+                            setErrorFromFirebase(error);
+                            
                         }
                     },
                     register: async (email, password) => {
